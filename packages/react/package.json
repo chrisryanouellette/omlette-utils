@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "vite build && tsc",
+    "deploy": "npm deploy --dry-run",
     "ci": "yarn lint",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",
