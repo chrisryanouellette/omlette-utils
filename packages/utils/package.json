@@ -1,20 +1,27 @@
 {
-  "name": "utils",
+  "name": "@ouellettec/utils",
   "private": false,
   "version": "0.0.0",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
+    "build": "yarn build:code && yarn build:post",
+    "build:code": "rollup -c",
+    "build:post": "prettier ./dist/**/*.d.ts --write",
+    "deploy": "npm publish --dry-run",
     "ci": "yarn lint && yarn test",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc --project ./tsconfig.ci.json",
     "test": "jest --watchAll=false",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test:coverage": "yarn test --coverage",
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
+  },
+  "nx": {
+    "implicitDependencies": ["@ouellettec/utils-types"]
   }
 }

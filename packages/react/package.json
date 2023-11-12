@@ -1,18 +1,14 @@
 {
-  "name": "@ouellettec/utils-frontend",
-  "private": false,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "@ouellettec/utils-react",
+  "version": "1.0.0",
+  "main": "index.js",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "vite build && tsc",
-    "deploy": "npm publish --dry-run",
     "ci": "yarn lint",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",
-    "lint:tsc": "tsc --project tsconfig.ci.json",
+    "lint:tsc": "tsc --project ./tsconfig.ci.json",
     "test": "jest --watchAll=false",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
@@ -20,10 +16,7 @@
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
   "nx": {
-    "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]
-  },
-  "dependencies": {
-    "zustand": "^4.4.4"
+    "implicitDependencies": ["@ouellettec/utils-frontend"]
   },
   "peerDependencies": {
     "react": "^18.2.0"

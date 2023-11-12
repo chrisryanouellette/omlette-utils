@@ -2,7 +2,12 @@ import {
   createStore as zustandCreateStore,
   useStore as zustandUseStore,
 } from "zustand";
-import type { ReadonlyState, UseStoreReturn, Reducer, SelectorFn } from "types";
+import type {
+  ReadonlyState,
+  UseStoreReturn,
+  Reducer,
+  SelectorFn,
+} from "@ouellettec/utils-types";
 import { stringSelector } from "./strings";
 
 function fallbackStateSelector(args: unknown): unknown {

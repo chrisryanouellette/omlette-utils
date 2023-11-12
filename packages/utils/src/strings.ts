@@ -1,4 +1,4 @@
-import { SelectorFn } from "types";
+import { SelectorFn } from "@ouellettec/utils-types";
 import { hasKey } from "./objects";
 
 export function stringSelector<State>(
