@@ -1,0 +1,38 @@
+name: Publish Package to NPM
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3 # Setup .npmrc file to publish to npm
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Run CI
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: ci # will run `yarn ci` command
+      - name: Build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn ci` command
+      - name: Gather Packages
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: nx run @bin/packages:start
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{fromJSON(needs.setup.outputs.matrix.packages)}}
+    steps:
+      - run: |
+          echo "${{ matrix.value }}"

@@ -37,6 +37,6 @@
     "vite": "^4.5.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/**/*"
   ]
 }
