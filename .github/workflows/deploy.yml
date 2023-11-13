@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      packages: ${{ steps.packages.outputs.output }}
+      versions: ${{ steps.versions.outputs.output }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -28,12 +28,17 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
+      - name: Check Versions
+        id: versions
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: nx run @bin/versions:start
   deploy:
     needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{fromJSON(needs.build.outputs.packages)}}
+        value: ${{fromJSON(needs.build.outputs.versions)}}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -42,12 +47,5 @@ jobs:
         with:
           node-version: '20.x'
           cache: 'yarn'
-      - name: Version check
-        id: check
-        uses: EndBug/version-check@v2
-        with:
-          file-name: ${{ matrix.value }}
-          static-checking: localIsNew
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Needs Update
         run: 'echo "${{ toJSON(steps.check.outputs) }}"'

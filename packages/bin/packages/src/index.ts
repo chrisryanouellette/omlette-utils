@@ -10,7 +10,7 @@ type PackageJson = {
   };
 };
 
-const outputKey = "output";
+const ioKey = "packages";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const packagesDir = path.join(__dirname, "../../../");
 
@@ -29,7 +29,7 @@ try {
     packages.push(packageJsonPath);
   }
   info(`Found ${packages.length} package(s) with deploy scripts`);
-  setOutput(outputKey, packages);
+  setOutput(ioKey, packages);
 } catch (error) {
   if (error instanceof Error) {
     setFailed(error.message);
