@@ -1,7 +1,7 @@
 import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
-import { getInput, setOutput, info } from "@actions/core";
+import { getInput, setOutput, setFailed, info } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -12,7 +12,7 @@ type PackageJson = {
 };
 
 const inputKey = "steps.packages.outputs.output";
-const outputKey = "versions";
+const outputKey = "output";
 
 async function getRemoteNpmVersion(name: string): Promise<string | null> {
   try {
@@ -25,12 +25,15 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
+  console.log(process.env.packages);
   info(getInput("steps.packages"));
   info(getInput("packages"));
   info(getInput(inputKey));
   const maybePackagePaths = getInput(inputKey);
   if (!maybePackagePaths) {
-    throw new Error("Package file path not provided. Check the matrix setup");
+    throw new Error(
+      "Package file path not provided. Check the packages action was ran before this action.",
+    );
   }
   const packagePaths = JSON.parse(maybePackagePaths);
   const outdated: string[] = [];
@@ -47,8 +50,8 @@ try {
   setOutput(outputKey, outdated);
 } catch (error) {
   if (error instanceof Error) {
-    info(error.message);
+    setFailed(error.message);
   } else {
-    info(`Unknown Error: ${JSON.stringify(error)}`);
+    setFailed(`Unknown Error: ${JSON.stringify(error)}`);
   }
 }

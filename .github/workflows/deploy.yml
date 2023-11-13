@@ -32,6 +32,8 @@ jobs:
       - name: Check Versions
         id: versions
         uses: borales/actions-yarn@v4
+        env:
+          packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/versions:start
   deploy:
