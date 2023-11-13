@@ -1,7 +1,7 @@
 import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
-import { getInput, setOutput, setFailed, info } from "@actions/core";
+import { setOutput, setFailed } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -11,7 +11,6 @@ type PackageJson = {
   version: string;
 };
 
-const inputKey = "steps.packages.outputs.output";
 const outputKey = "output";
 
 async function getRemoteNpmVersion(name: string): Promise<string | null> {
@@ -25,14 +24,10 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
-  console.log(process.env.packages);
-  info(getInput("steps.packages"));
-  info(getInput("packages"));
-  info(getInput(inputKey));
-  const maybePackagePaths = getInput(inputKey);
+  const maybePackagePaths = process.env.packages;
   if (!maybePackagePaths) {
     throw new Error(
-      "Package file path not provided. Check the packages action was ran before this action.",
+      "Package file path not provided. Check the packages action was ran before this action and the env var packages' is set.",
     );
   }
   const packagePaths = JSON.parse(maybePackagePaths);

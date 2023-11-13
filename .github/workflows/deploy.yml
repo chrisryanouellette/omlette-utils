@@ -36,17 +36,8 @@ jobs:
           packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/versions:start
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        value: ${{fromJSON(needs.build.outputs.versions)}}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4 # Setup .npmrc file to publish to npm
-        with:
-          node-version: '20.x'
-          cache: 'yarn'
+      - name: Deployed Packages
+        id: versions
+        env:
+          versions: ${{ steps.versions.outputs.output }}
+        run: "echo '${{ steps.versions.outputs.output }}'"
