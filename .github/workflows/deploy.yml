@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.packages.outputs.output }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3 # Setup .npmrc file to publish to npm
@@ -24,12 +26,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
-      - name: "Write Output"
-        run: echo "packages=${{toJSON(steps.packages.outputs.output)}}" >> "$GITHUB_OUTPUT"
   deploy:
-    needs: [ build ]
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - env:
-          OUTPUT1: ${{toJSON(needs.build.outputs)}}
-        run: echo "$OUTPUT1"
+        run: echo "${{toJSON(needs.build.outputs)}}"
