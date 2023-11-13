@@ -36,7 +36,8 @@ jobs:
           packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/versions:start
-      - name: Deployed Packages
+      - name: Deploy Packages
         env:
-          versions: ${{ steps.versions.outputs.output }}
-        run: "echo '${{ steps.versions.outputs.output }}'"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          packages: ${{ steps.versions.outputs.output }}
+        run: nx run @bin/deploy:start
