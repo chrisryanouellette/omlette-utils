@@ -41,4 +41,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           packages: ${{ steps.versions.outputs.output }}
-        run: nx run @bin/deploy:start
+        with:
+          cmd: nx run @bin/deploy:start
