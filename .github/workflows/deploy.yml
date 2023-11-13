@@ -16,8 +16,6 @@ jobs:
         with:
           cache: 'yarn'
           node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-          token: ${{ secrets.NPM_TOKEN }}
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
@@ -31,11 +29,18 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
+      - name: Setup .npmrc Files
+        uses: borales/actions-yarn@v4
+        env:
+          packages: ${{ steps.packages.outputs.output }}
+        with:
+          cmd: nx run @bin/npmrc:start
       - name: Check Versions
         id: versions
         uses: borales/actions-yarn@v4
         env:
           packages: ${{ steps.packages.outputs.output }}
+          token: ${{ secrets.NPM_TOKEN }}
         with:
           cmd: nx run @bin/versions:start
       - name: Deploy Packages

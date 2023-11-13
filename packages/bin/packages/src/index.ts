@@ -19,14 +19,15 @@ try {
   const directories = output.filter((file) => file.isDirectory());
   const packages = [];
   for (const dir of directories) {
-    const packageJsonPath = path.join(dir.path, dir.name, "./package.json");
+    const workspacePath = path.join(dir.path, dir.name);
+    const packageJsonPath = path.join(workspacePath, "./package.json");
     if (!fs.existsSync(packageJsonPath)) continue;
     const file = await fsPromises.readFile(packageJsonPath, {
       encoding: "utf-8",
     });
     const json: PackageJson = JSON.parse(file);
     if (!json.scripts?.deploy) continue;
-    packages.push(packageJsonPath);
+    packages.push(workspacePath);
   }
   info(`Found ${packages.length} package(s) with deploy scripts`);
   setOutput(outputKey, packages);

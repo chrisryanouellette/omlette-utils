@@ -1,6 +1,7 @@
 import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
+import * as path from "path";
 import { setOutput, setFailed } from "@actions/core";
 import * as semver from "semver";
 
@@ -30,9 +31,10 @@ try {
       "Package file path not provided. Check the packages action was ran before this action and the env var packages' is set.",
     );
   }
-  const packagePaths = JSON.parse(maybePackagePaths);
+  const workspacePaths = JSON.parse(maybePackagePaths);
   const outdated: string[] = [];
-  for (const packagePath of packagePaths) {
+  for (const workspacePath of workspacePaths) {
+    const packagePath = path.join(workspacePath, "package.json");
     const file = await fsPromises.readFile(packagePath, {
       encoding: "utf-8",
     });
