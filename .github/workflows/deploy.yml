@@ -51,5 +51,3 @@ jobs:
         with:
           node-version: '20.x'
           cache: 'yarn'
-      - name: Needs Update
-        run: 'echo "${{ toJSON(steps.check.outputs) }}"'
