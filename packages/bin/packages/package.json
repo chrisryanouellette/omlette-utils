@@ -7,7 +7,10 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "rollup -c",
-    "dev": "yarn build --watch"
+    "dev": "yarn build --watch",
+    "ci": "yarn lint",
+    "lint": "yarn lint:tsc",
+    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
   },
   "dependencies": {
     "@actions/core": "^1.10.1",
