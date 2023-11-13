@@ -19,10 +19,6 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: ci # will run `yarn ci` command
-      - name: Build
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn ci` command
       - name: Gather Packages
         uses: borales/actions-yarn@v4
         with:
