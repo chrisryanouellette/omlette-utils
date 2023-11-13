@@ -28,7 +28,7 @@ try {
     if (!json.scripts?.deploy) continue;
     packages.push(packageJsonPath);
   }
-  info("Found ${packages.length}(s) with deploy scripts");
+  info(`Found ${packages.length}(s) with deploy scripts`);
   setOutput(outputKey, packages);
 } catch (error) {
   if (error instanceof Error) {
