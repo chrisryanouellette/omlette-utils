@@ -1,14 +1,14 @@
 {
   "name": "@ouellettec/utils-frontend",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.0-alpha.1",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "vite build && tsc",
-    "deploy": "npm publish --dry-run",
+    "deploy": "npm publish",
     "ci": "yarn lint",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",

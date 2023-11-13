@@ -13,9 +13,10 @@ try {
   }
   const packages: string[] = JSON.parse(maybePackagePaths);
   for (const name of packages) {
+    info(`Deploying "${name}"...`);
     await exec(`yarn nx run ${name}:deploy`);
   }
-  info(`Successfully updated ${packages.length} packages(s)`);
+  info(`Successfully deployed ${packages.length} packages(s)`);
 } catch (error) {
   if (error instanceof Error) {
     setFailed(error.message);

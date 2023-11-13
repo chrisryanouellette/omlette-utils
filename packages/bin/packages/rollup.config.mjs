@@ -7,5 +7,6 @@ export default {
     file: "./dist/index.js",
     format: "module",
   },
+  external: ["fs/promises"],
   plugins: [typescript()],
 };
