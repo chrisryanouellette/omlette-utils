@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: '20.x'
           cache: 'yarn'
-          registry-url: 'https://registry.npmjs.org'
-          token: ${{ secrets.NPM_TOKEN }}
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
@@ -27,7 +25,9 @@ jobs:
         with:
           cmd: ci # will run `yarn ci` command
       - name: Set NPM Token
-        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+        run: |
+          npm config set registry https://registry.npmjs.org/ &&
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
       - name: Gather Packages
         id: packages
         uses: borales/actions-yarn@v4
