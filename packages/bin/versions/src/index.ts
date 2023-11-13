@@ -11,7 +11,8 @@ type PackageJson = {
   version: string;
 };
 
-const ioKey = "packages";
+const inputKey = "packages";
+const outputKey = "versions";
 
 async function getRemoteNpmVersion(name: string): Promise<string | null> {
   try {
@@ -24,7 +25,7 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
-  const maybePackagePaths = getInput(ioKey);
+  const maybePackagePaths = getInput(inputKey);
   if (!maybePackagePaths) {
     throw new Error("Package file path not provided. Check the matrix setup");
   }
@@ -40,7 +41,7 @@ try {
       outdated.push(name);
     }
   }
-  setOutput(ioKey, outdated);
+  setOutput(outputKey, outdated);
 } catch (error) {
   if (error instanceof Error) {
     setFailed(error.message);

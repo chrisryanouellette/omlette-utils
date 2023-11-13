@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    inputs:
+      packages:
+        description: 'Packages with deploy commands'
     outputs:
       packages: ${{ steps.versions.outputs.packages }}
       versions: ${{ steps.versions.outputs.output }}
