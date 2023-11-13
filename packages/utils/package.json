@@ -10,7 +10,7 @@
     "build": "yarn build:code && yarn build:post",
     "build:code": "rollup -c",
     "build:post": "prettier ./dist/**/*.d.ts --write",
-    "deploy": "npm publish",
+    "deploy": "npm publish --no-workspaces",
     "ci": "yarn lint && yarn test",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",
