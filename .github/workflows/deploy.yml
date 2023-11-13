@@ -33,5 +33,11 @@ jobs:
       matrix:
         value: ${{fromJSON(needs.build.outputs.packages)}}
     steps:
-      - run: |
-          echo "${{ matrix.value }}"
+      - name: Version check
+        id: check
+        uses: EndBug/version-check@v2
+        with:
+          file-name: ${{ matrix.value }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Needs Update
+        run: 'echo "${{ toJSON(steps.check.outputs) }}"'
