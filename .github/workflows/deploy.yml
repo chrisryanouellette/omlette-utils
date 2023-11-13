@@ -20,9 +20,12 @@ jobs:
         with:
           cmd: ci # will run `yarn ci` command
       - name: Gather Packages
+        id: packages
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
+      - name: Log
+        run: echo "The output was ${{ toJSON(steps.packages.outputs) }}
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
