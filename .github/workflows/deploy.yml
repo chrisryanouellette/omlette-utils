@@ -28,11 +28,11 @@ jobs:
         with:
           cmd: nx run @bin/packages:start
   deploy:
-    needs: build
+    needs: [ build ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{fromJSON(needs.setup.outputs.matrix.packages)}}
+        value: ${{fromJSON(needs.build.outputs.matrix.packages)}}
     steps:
       - run: |
           echo "${{ matrix.value }}"
