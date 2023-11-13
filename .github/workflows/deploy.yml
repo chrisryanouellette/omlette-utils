@@ -28,5 +28,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - env:
-          OUTPUT1: ${{needs.build.outputs}}
+          OUTPUT1: ${{toJSON(needs.build.outputs)}}
         run: echo "$OUTPUT1"
