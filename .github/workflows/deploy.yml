@@ -26,9 +26,7 @@ jobs:
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        value: ${{fromJSON(needs.build.outputs.matrix)}}
     steps:
-      - run: |
-          echo "${{ matrix.value }}"
+      - env:
+          OUTPUT1: ${{needs.build.outputs}}
+        run: echo "$OUTPUT1"
