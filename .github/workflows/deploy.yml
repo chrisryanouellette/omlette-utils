@@ -8,8 +8,10 @@ jobs:
     outputs:
       packages: ${{ steps.packages.outputs.output }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3 # Setup .npmrc file to publish to npm
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3 # Setup .npmrc file to publish to npm
         with:
           node-version: '20.x'
           cache: 'yarn'
@@ -33,6 +35,13 @@ jobs:
       matrix:
         value: ${{fromJSON(needs.build.outputs.packages)}}
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3 # Setup .npmrc file to publish to npm
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
       - name: Version check
         id: check
         uses: EndBug/version-check@v2
