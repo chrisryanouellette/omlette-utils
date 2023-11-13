@@ -1,7 +1,7 @@
 import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
-import { getInput, setOutput, setFailed } from "@actions/core";
+import { getInput, setOutput, setFailed, info } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -25,9 +25,9 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
-  console.log(getInput("steps.packages"));
-  console.log(getInput("packages"));
-  console.log(getInput(inputKey));
+  console.log(info("steps.packages"));
+  console.log(info("packages"));
+  console.log(info(inputKey));
   const maybePackagePaths = getInput(inputKey);
   if (!maybePackagePaths) {
     throw new Error("Package file path not provided. Check the matrix setup");
