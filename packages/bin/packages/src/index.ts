@@ -10,7 +10,7 @@ type PackageJson = {
   };
 };
 
-const outputKey = "packages";
+const outputKey = "output";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const packagesDir = path.join(__dirname, "../../../");
 

@@ -11,7 +11,7 @@ type PackageJson = {
   version: string;
 };
 
-const inputKey = "steps.versions.outputs.packages";
+const inputKey = "steps.packages.outputs.output";
 const outputKey = "versions";
 
 async function getRemoteNpmVersion(name: string): Promise<string | null> {
@@ -25,7 +25,9 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
-  console.log(process.env);
+  console.log(getInput("steps.packages"));
+  console.log(getInput("packages"));
+  console.log(getInput(inputKey));
   const maybePackagePaths = getInput(inputKey);
   if (!maybePackagePaths) {
     throw new Error("Package file path not provided. Check the matrix setup");

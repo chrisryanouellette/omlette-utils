@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      packages: ${{ steps.versions.outputs.packages }}
+      packages: ${{ steps.packages.outputs.output }}
       versions: ${{ steps.versions.outputs.output }}
     steps:
       - name: Checkout Code
