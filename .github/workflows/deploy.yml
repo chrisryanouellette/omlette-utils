@@ -37,6 +37,7 @@ jobs:
         with:
           cmd: nx run @bin/versions:start
       - name: Deploy Packages
+        uses: borales/actions-yarn@v4
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           packages: ${{ steps.versions.outputs.output }}
