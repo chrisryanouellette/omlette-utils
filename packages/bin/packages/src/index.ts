@@ -2,7 +2,7 @@ import * as fsPromises from "fs/promises";
 import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
-import { setOutput, setFailed } from "@actions/core";
+import { setOutput, setFailed, info } from "@actions/core";
 
 type PackageJson = {
   scripts?: {
@@ -28,6 +28,7 @@ try {
     if (!json.scripts?.deploy) continue;
     packages.push(packageJsonPath);
   }
+  info("Found ${packages.length}(s) with deploy scripts");
   setOutput(outputKey, packages);
 } catch (error) {
   if (error instanceof Error) {
