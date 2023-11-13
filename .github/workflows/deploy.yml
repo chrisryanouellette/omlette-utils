@@ -24,8 +24,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
-      - name: Log
-        run: echo "The output was ${{ toJSON(steps.packages.outputs) }}"
+      - name: "Write Output"
+        run: echo "packages=${{toJSON(steps.packages.outputs.output)}}" >> "$GITHUB_OUTPUT"
   deploy:
     needs: [ build ]
     runs-on: ubuntu-latest
