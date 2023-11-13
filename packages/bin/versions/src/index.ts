@@ -25,9 +25,9 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
 }
 
 try {
-  console.log(info("steps.packages"));
-  console.log(info("packages"));
-  console.log(info(inputKey));
+  info(getInput("steps.packages"));
+  info(getInput("packages"));
+  info(getInput(inputKey));
   const maybePackagePaths = getInput(inputKey);
   if (!maybePackagePaths) {
     throw new Error("Package file path not provided. Check the matrix setup");
