@@ -21,13 +21,17 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: ci # will run `yarn ci` command
-      - id: packages
-        name: Gather Packages
+      - name: Gather Packages
+        id: packages
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{fromJSON(needs.build.outputs.packages)}}
     steps:
-        - run: echo "${{toJSON(needs.build.outputs)}}"
+      - run: |
+          echo "${{ matrix.value }}"
