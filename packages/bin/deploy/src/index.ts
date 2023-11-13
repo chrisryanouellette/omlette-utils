@@ -2,9 +2,11 @@ import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
 import * as path from "path";
+import * as url from "url";
 import { setFailed, info } from "@actions/core";
 
 const exec = util.promisify(childProcess.exec);
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "../../../../");
 
 try {
