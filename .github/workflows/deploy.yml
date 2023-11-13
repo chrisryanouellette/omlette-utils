@@ -31,8 +31,6 @@ jobs:
           cmd: nx run @bin/packages:start
       - name: Setup .npmrc Files
         uses: borales/actions-yarn@v4
-        env:
-          packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/npmrc:start
       - name: Check Versions
