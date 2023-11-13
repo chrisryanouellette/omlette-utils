@@ -1,7 +1,7 @@
 import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
-import { getInput, setOutput, setFailed, info } from "@actions/core";
+import { getInput, setOutput, info } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -47,8 +47,8 @@ try {
   setOutput(outputKey, outdated);
 } catch (error) {
   if (error instanceof Error) {
-    setFailed(error.message);
+    info(error.message);
   } else {
-    setFailed(`Unknown Error: ${JSON.stringify(error)}`);
+    info(`Unknown Error: ${JSON.stringify(error)}`);
   }
 }
