@@ -15,7 +15,11 @@ jobs:
         uses: actions/setup-node@v4 # Setup .npmrc file to publish to npm
         with:
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
           node-version: '20.x'
+          scope: "@ouellettec"
+          token: ${{ secrets.NPM_TOKEN }}
+          always-auth: true
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
@@ -29,19 +33,15 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: nx run @bin/packages:start
-      - name: Setup .npmrc Files
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: nx run @bin/npmrc:start
       - name: Check Versions
         id: versions
         uses: borales/actions-yarn@v4
         env:
           packages: ${{ steps.packages.outputs.output }}
-          token: ${{ secrets.NPM_TOKEN }}
         with:
           cmd: nx run @bin/versions:start
       - name: Deploy Packages
         run: yarn nx run @bin/deploy:start
         env:
-          packages: ${{ steps.versions.outputs.output }} 
+          packages: ${{ steps.versions.outputs.output }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -3,7 +3,6 @@
   "license": "MIT",
   "scripts": {
     "build": "nx run-many -t build",
-    "deploy": "nx affected -t deploy --base=main~1 --head=main",
     "ci": "nx run-many -t ci"
   },
   "private": true,
