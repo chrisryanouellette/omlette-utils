@@ -26,6 +26,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: ci # will run `yarn ci` command
+      - name: Set NPM Token
+        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
       - name: Gather Packages
         id: packages
         uses: borales/actions-yarn@v4
@@ -38,8 +40,6 @@ jobs:
           packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/versions:start
-      - name: Set NPM Token
-        run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
       - name: Deploy Packages
         run: yarn nx run @bin/deploy:start
         env:
