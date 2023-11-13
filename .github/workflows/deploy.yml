@@ -15,8 +15,9 @@ jobs:
         uses: actions/setup-node@v4 # Setup .npmrc file to publish to npm
         with:
           node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          token: ${{ secrets.NPM_TOKEN }}
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
@@ -37,8 +38,9 @@ jobs:
           packages: ${{ steps.packages.outputs.output }}
         with:
           cmd: nx run @bin/versions:start
+      - name: Set NPM Token
+        run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
       - name: Deploy Packages
         run: yarn nx run @bin/deploy:start
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           packages: ${{ steps.versions.outputs.output }} 
