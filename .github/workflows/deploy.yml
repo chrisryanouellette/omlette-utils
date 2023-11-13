@@ -37,7 +37,6 @@ jobs:
         with:
           cmd: nx run @bin/versions:start
       - name: Deployed Packages
-        id: versions
         env:
           versions: ${{ steps.versions.outputs.output }}
         run: "echo '${{ steps.versions.outputs.output }}'"
