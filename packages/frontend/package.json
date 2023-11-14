@@ -1,11 +1,11 @@
 {
   "name": "@ouellettec/utils-frontend",
-  "private": false,
   "version": "0.0.0-alpha.1",
   "type": "module",
-  "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "license": "MIT",
   "scripts": {
     "build": "vite build && tsc",
     "deploy": "yarn publish --access public",
@@ -21,11 +21,5 @@
   },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]
-  },
-  "dependencies": {
-    "zustand": "^4.4.4"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0"
   }
 }

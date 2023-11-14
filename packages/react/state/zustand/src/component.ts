@@ -7,7 +7,7 @@ import {
   ReadonlyState,
   Reducer,
   SelectorFn,
-  UseStoreReturn,
+  UseStore,
 } from "@ouellettec/utils-types";
 import { stringSelector } from "@ouellettec/utils";
 
@@ -15,7 +15,7 @@ function fallbackStateSelector(args: unknown): unknown {
   return args;
 }
 
-export type UseComponentStore<State, Action = Partial<State>> = UseStoreReturn<
+export type UseComponentStore<State, Action = Partial<State>> = UseStore<
   RefObject<ReadonlyState<State>>,
   State,
   Action

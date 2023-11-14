@@ -15,5 +15,13 @@ export default defineConfig({
       // the proper extensions will be added
       fileName: fileName,
     },
+    rollupOptions: {
+      external: ["react"],
+      output: {
+        globals: {
+          react: "React",
+        },
+      },
+    },
   },
 });
