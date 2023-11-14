@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-types",
-  "version": "0.0.0",
+  "version": "0.0.0-alpha.1",
   "license": "MIT",
   "main": "./dist/index.d.ts",
   "types": "./dist/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "yarn build:code && yarn build:post",
     "build:code": "tsc --project tsconfig.build.json",
     "build:post": "prettier ./dist/**/*.d.ts --write",
-    "deploy": "npm publish --dry-run",
+    "deploy": "yarn publish --access public",
     "ci": "yarn lint",
     "lint": "yarn lint:tsc",
     "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"

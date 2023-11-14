@@ -1,7 +1,7 @@
 {
   "name": "@ouellettec/utils",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.0-alpha.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -10,7 +10,7 @@
     "build": "yarn build:code && yarn build:post",
     "build:code": "rollup -c",
     "build:post": "prettier ./dist/**/*.d.ts --write",
-    "deploy": "npm publish --dry-run",
+    "deploy": "yarn publish --access public",
     "ci": "yarn lint && yarn test",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",

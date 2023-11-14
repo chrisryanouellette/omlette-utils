@@ -1,0 +1,54 @@
+import * as fsPromises from "fs/promises";
+import * as childProcess from "child_process";
+import * as util from "util";
+import * as path from "path";
+import { setOutput, setFailed } from "@actions/core";
+import * as semver from "semver";
+
+const exec = util.promisify(childProcess.exec);
+
+type PackageJson = {
+  name: string;
+  version: string;
+};
+
+const outputKey = "output";
+
+async function getRemoteNpmVersion(name: string): Promise<string | null> {
+  try {
+    const response = await exec(`npm view ${name} version --json`);
+    if (response.stderr) throw response.stderr;
+    return response.stdout;
+  } catch (error) {
+    return null;
+  }
+}
+
+try {
+  const maybePackagePaths = process.env.packages;
+  if (!maybePackagePaths) {
+    throw new Error(
+      "Package file path not provided. Check the packages action was ran before this action and the env var packages' is set.",
+    );
+  }
+  const workspacePaths = JSON.parse(maybePackagePaths);
+  const outdated: string[] = [];
+  for (const workspacePath of workspacePaths) {
+    const packagePath = path.join(workspacePath, "package.json");
+    const file = await fsPromises.readFile(packagePath, {
+      encoding: "utf-8",
+    });
+    const { name, version }: PackageJson = JSON.parse(file);
+    const maybeVersion = await getRemoteNpmVersion(name);
+    if (!maybeVersion || semver.lt(maybeVersion, version)) {
+      outdated.push(name);
+    }
+  }
+  setOutput(outputKey, outdated);
+} catch (error) {
+  if (error instanceof Error) {
+    setFailed(error.message);
+  } else {
+    setFailed(`Unknown Error: ${JSON.stringify(error)}`);
+  }
+}
