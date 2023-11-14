@@ -12,7 +12,15 @@ A monorepo filled with useful utilities for Omlettes.
 ## Development
 
 ## Deploying
-The project uses NX's `affected` cli command to determine which projects have changed. 
+
+1. Make sure all code changes fre merged in.
+1. Make sure the packages being updated have new version numbers.
+   - This includes packages that consume other packages.
+1. Go to the [GitHub Releases page](https://github.com/chrisryanouellette/omlette-utils/releases)
+1. Create a new release
+   - Name: v[Version]
+   - Description: All commits in change w/ descriptions
+1. The deployment will begin once you publish the release.
 
 ## Resources
 
