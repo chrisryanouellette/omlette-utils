@@ -2,7 +2,7 @@ import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
 import * as path from "path";
-import { setOutput, setFailed, info } from "@actions/core";
+import { setOutput, setFailed, info, error as logError } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -16,11 +16,15 @@ const outputKey = "output";
 
 async function getRemoteNpmVersion(name: string): Promise<string | null> {
   try {
-    const response = await exec(`npm view ${name} version --json`);
+    const response = await exec(`yarn info ${name} version --json`);
     if (response.stderr) throw response.stderr;
-    return response.stdout;
+    return JSON.parse(response.stdout).data;
   } catch (error) {
-    info(JSON.stringify(error));
+    if (error instanceof Error) {
+      logError(error);
+    } else {
+      logError(`Unknown Error: ${JSON.stringify(error)}`);
+    }
     return null;
   }
 }
