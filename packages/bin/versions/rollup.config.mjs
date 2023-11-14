@@ -7,6 +7,13 @@ export default {
     file: "./dist/index.js",
     format: "module",
   },
-  external: ["fs/promises", "child_process"],
+  external: [
+    "fs/promises",
+    "child_process",
+    "util",
+    "path",
+    "semver",
+    "@actions/core",
+  ],
   plugins: [typescript()],
 };

@@ -56,6 +56,8 @@ try {
     if (isOutdated(maybeVersion, version)) {
       info(`Package "${name}" is outdate.`);
       outdated.push(name);
+    } else {
+      info(`Skipping, version ${maybeVersion} found, local version ${version}`);
     }
   }
   setOutput(outputKey, outdated);

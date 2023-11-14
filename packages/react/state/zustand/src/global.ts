@@ -4,17 +4,17 @@ import {
 } from "zustand";
 import type {
   ReadonlyState,
-  UseStoreReturn,
+  UseStore,
   Reducer,
   SelectorFn,
 } from "@ouellettec/utils-types";
-import { stringSelector } from "./strings";
+import { stringSelector } from "@ouellettec/utils";
 
 function fallbackStateSelector(args: unknown): unknown {
   return args;
 }
 
-export type UseGlobalStore<State, Action = Partial<State>> = UseStoreReturn<
+export type UseGlobalStore<State, Action = Partial<State>> = UseStore<
   ReadonlyState<State>,
   State,
   Action

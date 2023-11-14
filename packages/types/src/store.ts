@@ -20,7 +20,7 @@ export type Reducer<State, Update> = (
   update: Update,
 ) => Partial<State>;
 
-export type UseStoreReturn<Store, State, Action = Partial<State>> = {
+export type UseStore<Store, State, Action = Partial<State>> = {
   state: Store;
   useState: UseState<State>;
   getState: GetState<State>;

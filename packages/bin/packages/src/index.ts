@@ -14,20 +14,35 @@ const outputKey = "output";
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const packagesDir = path.join(__dirname, "../../../");
 
+async function search(sources: fs.Dirent[]): Promise<string[]> {
+  const results: string[] = [];
+  for (const src of sources) {
+    if (!src.isDirectory()) continue;
+    const dirPath = path.join(src.path, src.name);
+    const packageJsonPath = path.join(dirPath, "./package.json");
+    if (!fs.existsSync(packageJsonPath)) {
+      const subDir = await fsPromises.readdir(dirPath, { withFileTypes: true });
+      results.push(...(await search(subDir)));
+    } else {
+      results.push(dirPath);
+    }
+  }
+  return results;
+}
+
 try {
   const output = await fsPromises.readdir(packagesDir, { withFileTypes: true });
-  const directories = output.filter((file) => file.isDirectory());
+  const directories = await search(output);
   const packages = [];
   for (const dir of directories) {
-    const workspacePath = path.join(dir.path, dir.name);
-    const packageJsonPath = path.join(workspacePath, "./package.json");
+    const packageJsonPath = path.join(dir, "./package.json");
     if (!fs.existsSync(packageJsonPath)) continue;
     const file = await fsPromises.readFile(packageJsonPath, {
       encoding: "utf-8",
     });
     const json: PackageJson = JSON.parse(file);
     if (!json.scripts?.deploy) continue;
-    packages.push(workspacePath);
+    packages.push(dir);
   }
   info(`Found ${packages.length} package(s) with deploy scripts`);
   setOutput(outputKey, packages);

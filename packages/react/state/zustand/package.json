@@ -1,0 +1,29 @@
+{
+  "name": "@ouellettec/utils-react-state-zustand",
+  "version": "0.0.0-alpha.1",
+  "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn build --watch",
+    "build": "yarn build:code && yarn build:types && yarn build:post",
+    "build:code": "vite build",
+    "build:types": "tsc",
+    "build:post": "prettier ./dist/**/*.d.ts --write",
+    "deploy": "yarn publish --access public",
+    "ci": "yarn lint",
+    "lint": "yarn lint:tsc",
+    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
+  },
+  "nx": {
+    "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]
+  },
+  "dependencies": {
+    "zustand": "^4.4.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
