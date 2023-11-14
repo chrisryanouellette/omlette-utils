@@ -2,7 +2,7 @@ import * as fsPromises from "fs/promises";
 import * as childProcess from "child_process";
 import * as util from "util";
 import * as path from "path";
-import { setOutput, setFailed } from "@actions/core";
+import { setOutput, setFailed, info } from "@actions/core";
 import * as semver from "semver";
 
 const exec = util.promisify(childProcess.exec);
@@ -24,6 +24,12 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
   }
 }
 
+function isOutdated(a: string | null, b: string): boolean {
+  if (!a) return true;
+  if (a === b) return false;
+  return semver.lt(a, b);
+}
+
 try {
   const maybePackagePaths = process.env.packages;
   if (!maybePackagePaths) {
@@ -34,13 +40,16 @@ try {
   const workspacePaths = JSON.parse(maybePackagePaths);
   const outdated: string[] = [];
   for (const workspacePath of workspacePaths) {
+    info(`Checking package "${workspacePath.split("/").pop()}"'s version`);
     const packagePath = path.join(workspacePath, "package.json");
     const file = await fsPromises.readFile(packagePath, {
       encoding: "utf-8",
     });
     const { name, version }: PackageJson = JSON.parse(file);
     const maybeVersion = await getRemoteNpmVersion(name);
-    if (!maybeVersion || semver.lt(maybeVersion, version)) {
+    info(!maybeVersion ? "No Version found" : `Version ${maybeVersion} found`);
+    if (isOutdated(maybeVersion, version)) {
+      info(`Package "${name}" is outdate.`);
       outdated.push(name);
     }
   }

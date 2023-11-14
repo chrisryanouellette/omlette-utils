@@ -1,7 +1,7 @@
 name: Publish Package to NPM
 on:
-  release:
-    types: [created]
+  pull_request:
+    branches: [ "main", "develop" ]
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
