@@ -20,6 +20,7 @@ async function getRemoteNpmVersion(name: string): Promise<string | null> {
     if (response.stderr) throw response.stderr;
     return response.stdout;
   } catch (error) {
+    info(JSON.stringify(error));
     return null;
   }
 }
@@ -40,12 +41,12 @@ try {
   const workspacePaths = JSON.parse(maybePackagePaths);
   const outdated: string[] = [];
   for (const workspacePath of workspacePaths) {
-    info(`Checking package "${workspacePath.split("/").pop()}"'s version`);
     const packagePath = path.join(workspacePath, "package.json");
     const file = await fsPromises.readFile(packagePath, {
       encoding: "utf-8",
     });
     const { name, version }: PackageJson = JSON.parse(file);
+    info(`Checking package "${name}"'s version`);
     const maybeVersion = await getRemoteNpmVersion(name);
     info(!maybeVersion ? "No Version found" : `Version ${maybeVersion} found`);
     if (isOutdated(maybeVersion, version)) {
