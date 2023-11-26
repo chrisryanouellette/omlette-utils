@@ -1,5 +1,5 @@
 {
-  "name": "@ouellettec/utils-firebase-firestore",
+  "name": "@ouellettec/utils-firebase-auth-client",
   "version": "0.0.0-alpha.1",
   "type": "module",
   "main": "./dist/index.umd.js",
@@ -19,9 +19,8 @@
     "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
   },
   "dependencies": {
-    "@ouellettec/utils-firebase": "^0.0.0-alpha.1"
-  },
-  "peerDependencies": {
+    "@ouellettec/utils": "0.0.0-alpha.2",
+    "@ouellettec/utils-firebase": "^0.0.0-alpha.1",
     "firebase": "^10.6.0"
   },
   "nx": {

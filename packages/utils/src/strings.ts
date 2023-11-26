@@ -1,6 +1,18 @@
 import { SelectorFn } from "@ouellettec/utils-types";
 import { hasKey } from "./objects";
 
+export type ProtectedString<T extends string> = T;
+
+export function protectString<T extends string>(
+  string: unknown,
+): ProtectedString<T> {
+  return string as ProtectedString<T>;
+}
+
+export function unProtectString(string: unknown): string {
+  return string as string;
+}
+
 export function stringSelector<State>(
   selector: string,
 ): SelectorFn<State, unknown> {

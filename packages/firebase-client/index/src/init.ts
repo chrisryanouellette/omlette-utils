@@ -1,22 +1,17 @@
-import { FirebaseApp, getApps, initializeApp } from "firebase/app";
-import { isSSR } from "@ouellettec/utils";
+import {
+  FirebaseApp,
+  getApps,
+  initializeApp,
+  FirebaseOptions,
+} from "firebase/app";
+import { Throwable, isSSR } from "@ouellettec/utils";
 
 const subs = new Set<(firebaseClient: FirebaseApp) => void>();
 
 let firebaseClient: FirebaseApp;
 
-export type InitializeFirebaseClientArgs = {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  appId: string;
-  measurementId: string;
-};
-
 /** Allows the developer to create a new firebase instance */
-export function initializeFirebaseClient(
-  args: InitializeFirebaseClientArgs,
-): FirebaseApp {
+export function initializeFirebaseClient(args: FirebaseOptions): FirebaseApp {
   if (!isSSR()) {
     if (!getApps().length) {
       firebaseClient = initializeApp(args);
@@ -28,8 +23,14 @@ export function initializeFirebaseClient(
   return firebaseClient;
 }
 
-export function getFirebaseClient(): FirebaseApp {
-  return firebaseClient;
+export function getFirebaseClient(): Throwable<FirebaseApp> {
+  if (!firebaseClient) {
+    return {
+      isError: true,
+      error: new Error("Firebase client has not been initialized."),
+    };
+  }
+  return { isError: false, value: firebaseClient };
 }
 
 /**

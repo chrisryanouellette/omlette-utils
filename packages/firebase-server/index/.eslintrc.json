@@ -1,0 +1,11 @@
+{
+  "extends": ["eslint-config-omlette", "plugin:jest/recommended"],
+  "rules": {
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^firebase-admin/.+"]
+      }
+    ]
+  }
+}
