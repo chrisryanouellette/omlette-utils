@@ -126,3 +126,7 @@ export async function handleError<R>(
     return { isError: true, error: new Error(getErrorMessage(error)) };
   }
 }
+
+export function errorFactory<T>(msg: string): Throwable<T> {
+  return { isError: true, error: new Error(msg) };
+}

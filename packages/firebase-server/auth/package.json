@@ -1,0 +1,29 @@
+{
+  "name": "@ouellettec/utils-firebase-auth-admin",
+  "version": "0.0.0-alpha.1",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn build --watch",
+    "build": "yarn build:code && yarn build:types && yarn build:post",
+    "build:code": "vite build",
+    "build:types": "tsc",
+    "build:post": "prettier ./dist/**/*.d.ts --write",
+    "analyze": "vite-bundle-visualizer --open",
+    "deploy": "yarn publish --access public",
+    "ci": "yarn lint",
+    "lint": "yarn lint:tsc",
+    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
+  },
+  "dependencies": {
+    "@ouellettec/utils": "^0.0.0-alpha.3",
+    "@ouellettec/utils-firebase-admin": "^0.0.0-alpha.1",
+    "firebase-admin": "^11.11.1"
+  },
+  "nx": {
+    "implicitDependencies": ["@ouellettec/utils-firebase-admin"]
+  }
+}
