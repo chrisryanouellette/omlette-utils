@@ -1,5 +1,5 @@
 {
-  "name": "@ouellettec/utils-firebase-auth-server",
+  "name": "@ouellettec/utils-firebase-auth-admin",
   "version": "0.0.0-alpha.1",
   "type": "module",
   "main": "./dist/index.umd.js",
