@@ -17,6 +17,11 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["firebase", "firebase/app"],
+      output: {
+        globals: {
+          "firebase/app": "firebase/app",
+        },
+      },
     },
   },
 });

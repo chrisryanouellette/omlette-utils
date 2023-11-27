@@ -16,11 +16,13 @@ export default defineConfig({
       fileName: fileName,
     },
     rollupOptions: {
-      external: [
-        "firebase",
-        "firebase/firestore",
-        "@ouellettec/utils-firebase",
-      ],
+      external: ["firebase", "firebase/auth", "@ouellettec/utils-firebase"],
+      output: {
+        globals: {
+          "firebase/auth": "firebase/auth",
+          "@ouellettec/utils-firebase": "@ouellettec/utils-firebase",
+        },
+      },
     },
   },
 });
