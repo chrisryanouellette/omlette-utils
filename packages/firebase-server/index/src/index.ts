@@ -3,41 +3,25 @@ import { Throwable, isSSR } from "@ouellettec/utils";
 import { App as FirebaseAdminApp, getApps } from "firebase-admin/app";
 
 let firebaseAdmin: FirebaseAdminApp;
-let firebaseAdminConfig: FirebaseAdminConfig;
 
-type FirebaseAdminConfig = {
+export type FirebaseAdminConfig = {
   projectId: string;
   clientEmail: string;
   privateKey: string;
   databaseURL: string;
 };
 
-export function setFirebaseAdminConfig(config: FirebaseAdminConfig): void {
-  firebaseAdminConfig = config;
-}
-
-export function getFirebaseAdminConfig(): FirebaseAdminConfig {
-  return firebaseAdminConfig;
-}
-
-export function initializeFirebaseAdmin(): FirebaseAdminApp | void {
-  const firebaseAdminConfig = getFirebaseAdminConfig();
+export function initializeFirebaseAdmin(config: FirebaseAdminConfig): void {
   if (isSSR()) {
     if (!getApps().length) {
-      if (!firebaseAdminConfig) {
-        throw new Error(
-          `The firebase admin config has not been set. Call "setFirebaseAdminConfig" before initializing the admin.`,
-        );
-      }
       firebaseAdmin = admin.initializeApp({
         credential: admin.credential.cert({
-          projectId: firebaseAdminConfig.projectId,
-          clientEmail: firebaseAdminConfig.clientEmail,
-          privateKey: firebaseAdminConfig.privateKey,
+          projectId: config.projectId,
+          clientEmail: config.clientEmail,
+          privateKey: config.privateKey,
         }),
-        databaseURL: firebaseAdminConfig.databaseURL,
+        databaseURL: config.databaseURL,
       });
-      return firebaseAdmin;
     }
   }
 }
