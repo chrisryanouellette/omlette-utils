@@ -1,0 +1,19 @@
+{
+  "name": "@bin/dependency-check",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "validate": "yarn build && yarn start",
+    "start": "node ./dist/index.js",
+    "build": "rollup -c",
+    "dev": "yarn build --watch",
+    "ci": "yarn lint",
+    "lint": "yarn lint:tsc",
+    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
+  },
+  "dependencies": {
+    "semver": "^7.5.4"
+  }
+}

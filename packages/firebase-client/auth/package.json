@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ouellettec/utils": "^0.0.0-alpha.3",
-    "@ouellettec/utils-firebase": "^0.0.0-alpha.1",
+    "@ouellettec/utils-firebase": "^0.0.0-alpha.2",
     "firebase": "^10.6.0"
   },
   "nx": {
