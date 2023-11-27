@@ -1,8 +1,8 @@
 {
   "name": "@ouellettec/utils-firebase-auth-admin",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "type": "module",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ouellettec/utils": "^0.0.0-alpha.3",
-    "@ouellettec/utils-firebase-admin": "^0.0.0-alpha.1",
+    "@ouellettec/utils-firebase-admin": "^0.0.0-alpha.2",
     "firebase-admin": "^11.11.1"
   },
   "nx": {
