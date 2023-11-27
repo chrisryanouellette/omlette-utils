@@ -48,6 +48,8 @@ export default defineConfig({
           url: "url",
           "firebase-admin": "firebase-admin",
           "firebase-admin/auth": "firebase-admin/auth",
+          "@ouellettec/utils-firebase-admin":
+            "@ouellettec/utils-firebase-admin",
         },
       },
     },
