@@ -15,7 +15,6 @@ export default defineConfig({
       name: packageJson.name,
       // the proper extensions will be added
       fileName: fileName,
-      formats: ["cjs", "es"],
     },
     rollupOptions: {
       external: [
