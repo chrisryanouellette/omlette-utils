@@ -31,7 +31,7 @@ export default defineConfig({
         "util",
         "url",
         "firebase-admin",
-        "firebase-admin/app",
+        "firebase-admin/auth",
         "@ouellettec/utils-firebase-admin",
       ],
       output: {
@@ -48,7 +48,7 @@ export default defineConfig({
           util: "util",
           url: "url",
           "firebase-admin": "firebase-admin",
-          "firebase-admin/app": "firebase-admin/app",
+          "firebase-admin/auth": "firebase-admin/auth",
         },
       },
     },

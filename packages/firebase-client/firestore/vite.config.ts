@@ -21,6 +21,12 @@ export default defineConfig({
         "firebase/firestore",
         "@ouellettec/utils-firebase",
       ],
+      output: {
+        globals: {
+          "firebase/firestore": "firebase/firestore",
+          "@ouellettec/utils-firebase": "@ouellettec/utils-firebase",
+        },
+      },
     },
   },
 });
