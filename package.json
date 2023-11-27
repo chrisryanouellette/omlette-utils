@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "build": "nx run-many -t build",
-    "ci": "nx run-many -t ci"
+    "ci": "nx run-many -t ci",
+    "deps": "nx run @bin/dependency-check:validate"
   },
   "private": true,
   "dependencies": {},
