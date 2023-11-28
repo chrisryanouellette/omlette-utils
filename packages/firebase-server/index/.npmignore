@@ -1,0 +1,6 @@
+!dist
+node_modules
+src
+*config*
+.eslintrc.json
+tsconfig.json
