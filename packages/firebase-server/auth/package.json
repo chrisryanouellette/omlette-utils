@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase-auth-admin",
-  "version": "0.0.0-alpha.5",
+  "version": "0.0.0-alpha.7",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.js",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ouellettec/utils": "^0.0.0-alpha.3",
-    "@ouellettec/utils-firebase-admin": "^0.0.0-alpha.3",
+    "@ouellettec/utils-firebase-admin": "^0.0.0-alpha.4",
     "firebase-admin": "^11.11.1"
   },
   "nx": {
