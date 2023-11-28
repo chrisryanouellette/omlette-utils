@@ -13,7 +13,10 @@ export type FirebaseAdminConfig = {
 
 export function initializeFirebaseAdmin(config: FirebaseAdminConfig): void {
   if (isSSR()) {
-    if (!getApps().length) {
+    const app = getApps()[0];
+    if (app) {
+      firebaseAdmin = app;
+    } else {
       firebaseAdmin = admin.initializeApp({
         credential: admin.credential.cert({
           projectId: config.projectId,
