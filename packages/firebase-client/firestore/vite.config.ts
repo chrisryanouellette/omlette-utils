@@ -14,16 +14,20 @@ export default defineConfig({
       name: packageJson.name,
       // the proper extensions will be added
       fileName: fileName,
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
       external: [
         "firebase",
         "firebase/firestore",
+        "@ouellettec/utils",
         "@ouellettec/utils-firebase",
       ],
       output: {
         globals: {
+          firebase: "firebase",
           "firebase/firestore": "firebase/firestore",
+          "@ouellettec/utils": "@ouellettec/utils",
           "@ouellettec/utils-firebase": "@ouellettec/utils-firebase",
         },
       },

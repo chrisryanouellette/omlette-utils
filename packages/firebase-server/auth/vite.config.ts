@@ -15,6 +15,7 @@ export default defineConfig({
       name: packageJson.name,
       // the proper extensions will be added
       fileName: fileName,
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
       external: [
@@ -31,6 +32,7 @@ export default defineConfig({
         "url",
         "firebase-admin",
         "firebase-admin/auth",
+        "@ouellettec/utils",
         "@ouellettec/utils-firebase-admin",
       ],
       output: {
@@ -48,6 +50,7 @@ export default defineConfig({
           url: "url",
           "firebase-admin": "firebase-admin",
           "firebase-admin/auth": "firebase-admin/auth",
+          "@ouellettec/utils": "@ouellettec/utils",
           "@ouellettec/utils-firebase-admin":
             "@ouellettec/utils-firebase-admin",
         },

@@ -14,12 +14,21 @@ export default defineConfig({
       name: packageJson.name,
       // the proper extensions will be added
       fileName: fileName,
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react"],
+      external: [
+        "react",
+        "zustand",
+        "@ouellettec/utils",
+        "@ouellettec/utils-types",
+      ],
       output: {
         globals: {
           react: "React",
+          zustand: "zustand",
+          "@ouellettec/utils-types": "@ouellettec/utils-types",
+          "@ouellettec/utils": "@ouellettec/utils",
         },
       },
     },
