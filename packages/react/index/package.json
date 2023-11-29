@@ -23,6 +23,10 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
+  "dependencies": {
+    "@ouellettec/utils-frontend": "^0.0.0-alpha.3",
+    "@ouellettec/utils-react-state-zustand": "^0.0.0-alpha.3"
+  },
   "nx": {
     "implicitDependencies": [
       "@ouellettec/utils-frontend",
