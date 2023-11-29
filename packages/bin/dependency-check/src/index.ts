@@ -3,7 +3,6 @@ import * as fs from "fs";
 import * as path from "path";
 import * as url from "url";
 import * as semver from "semver";
-import { SemVer } from "semver";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const packagesDir = path.join(__dirname, "../../../");
@@ -19,7 +18,7 @@ type PackageJson = {
   };
 };
 
-type PackageVersions = { [index: string]: SemVer };
+type PackageVersions = { [index: string]: semver.SemVer };
 
 /** Gets all the packages in the monorepo */
 async function search(sources: fs.Dirent[]): Promise<string[]> {
@@ -77,7 +76,7 @@ function audit(files: PackageJson[], version: PackageVersions): string[] {
       const result = semver.compare(latest, parsed);
       if (result === 0) continue;
       outdated.push(
-        `Dependency "${dep}" in "${file.name}" needs to be updated`,
+        `\n\tPackage: "${file.name}"\n\tIssue: "${dep}"\n\tVersion: ${latest}`,
       );
     }
   }

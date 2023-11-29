@@ -14,13 +14,15 @@ export default defineConfig({
       name: packageJson.name,
       // the proper extensions will be added
       fileName: fileName,
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["firebase-admin", "firebase-admin/app"],
+      external: ["firebase-admin", "firebase-admin/app", "@ouellettec/utils"],
       output: {
         globals: {
           "firebase-admin": "firebase-admin",
           "firebase-admin/app": "firebase-admin/app",
+          "@ouellettec/utils": "@ouellettec/utils",
         },
       },
     },
