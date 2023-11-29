@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react",
-  "version": "0.0.0-alpha.3",
+  "version": "0.0.0-alpha.4",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -22,6 +22,10 @@
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "test:coverage": "yarn test --coverage",
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
+  },
+  "dependencies": {
+    "@ouellettec/utils-frontend": "^0.0.0-alpha.3",
+    "@ouellettec/utils-react-state-zustand": "^0.0.0-alpha.3"
   },
   "nx": {
     "implicitDependencies": [
