@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase-admin",
-  "version": "0.0.0-alpha.8",
+  "version": "0.0.0-alpha.9",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -16,7 +16,12 @@
     "deploy": "yarn publish --access public",
     "ci": "yarn lint",
     "lint": "yarn lint:tsc",
-    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
+    "lint:tsc": "yarn tsc --project ./tsconfig.ci.json",
+    "test": "jest --watchAll=false",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "test:coverage": "yarn test --coverage",
+    "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "@ouellettec/utils": "^0.0.0-alpha.4",

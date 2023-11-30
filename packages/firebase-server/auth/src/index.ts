@@ -1,6 +1,6 @@
 import { DecodedIdToken } from "firebase-admin/auth";
 import { Throwable, getErrorMessage } from "@ouellettec/utils";
-import admin, { getFirebaseAdmin } from "@ouellettec/utils-firebase-admin";
+import { admin, getFirebaseAdmin } from "@ouellettec/utils-firebase-admin";
 
 export function getFirebaseAuth(): Throwable<ReturnType<typeof admin.auth>> {
   const app = getFirebaseAdmin();

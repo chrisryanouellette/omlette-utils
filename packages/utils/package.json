@@ -13,7 +13,7 @@
     "build:post": "prettier ./dist/**/*.d.ts --write",
     "analyze": "vite-bundle-visualizer --open",
     "deploy": "yarn publish --access public",
-    "ci": "yarn lint && yarn test",
+    "ci": "yarn lint && yarn test:coverage",
     "lint": "yarn lint:eslint && yarn lint:tsc",
     "lint:eslint": "eslint --ext ts,tsx -c ./.eslintrc.json",
     "lint:tsc": "tsc --project ./tsconfig.ci.json",
