@@ -7,6 +7,22 @@ import {
 
 describe("The error utilities", () => {
   describe("getErrorMessage", () => {
+    it("Will handle an Error", () => {
+      const data = new Error("Test");
+      const code = getErrorMessage(data);
+      expect(code).toBe(data.message);
+    });
+    it("Will handle custom errors", () => {
+      class ValidationError extends Error {
+        constructor(message: string) {
+          super(message);
+          this.name = "ValidationError";
+        }
+      }
+      const data = new ValidationError("Test");
+      const code = getErrorMessage(data);
+      expect(code).toBe(data.message);
+    });
     it("Will return the error message when present", () => {
       const data = { message: "TEST" };
       const code = getErrorMessage(data);

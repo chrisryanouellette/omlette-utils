@@ -1,19 +1,18 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 export default {
+  rootDir: "./",
+  roots: ["<rootDir>", "<rootDir>/../../../__mocks__"],
   preset: "ts-jest",
   testEnvironment: "node",
-  collectCoverageFrom: [
-    "./src/**/*.ts",
-    "!./src/**/__test__/**/*.ts",
-    "!./src/index.ts",
-  ],
+  prettierPath: null, // Prettier 3 not supported
+  collectCoverageFrom: ["./src/**/*.ts", "!./src/**/__test__/**/*.ts"],
   coverageProvider: "v8",
   coverageThreshold: {
     global: {
-      branches: 90,
-      functions: 90,
-      lines: 90,
-      statements: 90,
+      branches: 95,
+      functions: 95,
+      lines: 95,
+      statements: 95,
     },
   },
   watchPlugins: [
