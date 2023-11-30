@@ -1,8 +1,6 @@
 import admin from "firebase-admin";
-import { Throwable, isSSR } from "@ouellettec/utils";
-import { App as FirebaseAdminApp, getApps, getApp } from "firebase-admin/app";
-
-let firebaseAdmin: FirebaseAdminApp;
+import { Throwable, getErrorMessage, isSSR } from "@ouellettec/utils";
+import { App as FirebaseAdminApp } from "firebase-admin/app";
 
 export type FirebaseAdminConfig = {
   projectId: string;
@@ -11,20 +9,36 @@ export type FirebaseAdminConfig = {
   databaseURL: string;
 };
 
-export function initializeFirebaseAdmin(config: FirebaseAdminConfig): void {
+let firebaseAdmin: FirebaseAdminApp;
+
+export function initializeFirebaseAdmin(
+  config: FirebaseAdminConfig,
+): Throwable<void> {
   if (isSSR()) {
-    if (getApps().length) {
-      firebaseAdmin = getApp();
-    } else {
-      firebaseAdmin = admin.initializeApp({
-        credential: admin.credential.cert({
-          projectId: config.projectId,
-          clientEmail: config.clientEmail,
-          privateKey: config.privateKey,
-        }),
-        databaseURL: config.databaseURL,
-      });
+    return {
+      isError: true,
+      error: new Error(
+        "Function 'initializeFirebaseAdmin' can not be called on the client",
+      ),
+    };
+  }
+  try {
+    firebaseAdmin = admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId: config.projectId,
+        clientEmail: config.clientEmail,
+        privateKey: config.privateKey,
+      }),
+      databaseURL: config.databaseURL,
+    });
+    return { isError: false };
+  } catch (error) {
+    if (error instanceof Error) {
+      if (/already exists/u.test(error.message)) {
+        return { isError: false };
+      }
     }
+    return { isError: true, error: new Error(getErrorMessage(error)) };
   }
 }
 
@@ -37,3 +51,5 @@ export function getFirebaseAdmin(): Throwable<FirebaseAdminApp> {
   }
   return { isError: false, value: firebaseAdmin };
 }
+
+export default admin;
