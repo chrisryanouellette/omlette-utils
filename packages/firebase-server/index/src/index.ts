@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import { Throwable, isSSR } from "@ouellettec/utils";
-import { App as FirebaseAdminApp, getApps } from "firebase-admin/app";
+import { App as FirebaseAdminApp, getApps, getApp } from "firebase-admin/app";
 
 let firebaseAdmin: FirebaseAdminApp;
 
@@ -13,9 +13,8 @@ export type FirebaseAdminConfig = {
 
 export function initializeFirebaseAdmin(config: FirebaseAdminConfig): void {
   if (isSSR()) {
-    const app = getApps()[0];
-    if (app) {
-      firebaseAdmin = app;
+    if (getApps().length) {
+      firebaseAdmin = getApp();
     } else {
       firebaseAdmin = admin.initializeApp({
         credential: admin.credential.cert({
