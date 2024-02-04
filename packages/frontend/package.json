@@ -23,6 +23,9 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
+  "dependencies": {
+    "@ouellettec/utils": "^0.0.0-alpha.4"
+  },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]
   }
