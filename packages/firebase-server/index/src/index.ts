@@ -28,6 +28,7 @@ export function initializeFirebaseAdmin(
     } catch (error) {
       if (error instanceof Error) {
         if (/already exists/u.test(error.message)) {
+          firebaseAdmin = getApp();
           return { isError: false };
         }
       }
