@@ -6,7 +6,9 @@ export type FirebaseAdminConfig = {
   projectId: string;
   clientEmail: string;
   privateKey: string;
-  databaseURL: string;
+  databaseURL?: string;
+  databaseAuthVariableOverride?: { uid: string } | null;
+  storageBucket?: string;
 };
 
 let firebaseAdmin: FirebaseAdminApp;
@@ -22,7 +24,10 @@ export function initializeFirebaseAdmin(
           clientEmail: config.clientEmail,
           privateKey: config.privateKey,
         }),
+        serviceAccountId: config.clientEmail,
         databaseURL: config.databaseURL,
+        databaseAuthVariableOverride: config.databaseAuthVariableOverride,
+        storageBucket: config.storageBucket,
       });
       return { isError: false };
     } catch (error) {
