@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 import { Throwable, getErrorMessage, isSSR } from "@ouellettec/utils";
-import { App as FirebaseAdminApp } from "firebase-admin/app";
+import { App as FirebaseAdminApp, getApp } from "firebase-admin/app";
 
 export type FirebaseAdminConfig = {
   projectId: string;
