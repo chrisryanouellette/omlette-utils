@@ -1,6 +1,8 @@
 import { Throwable, errorFactory, getErrorMessage } from "@ouellettec/utils";
 
-function getFileDimensions(file: File): Promise<Throwable<HTMLImageElement>> {
+export function getFileDimensions(
+  file: File,
+): Promise<Throwable<HTMLImageElement>> {
   return new Promise((resolve) => {
     try {
       const image = new Image();
@@ -23,7 +25,7 @@ function getFileDimensions(file: File): Promise<Throwable<HTMLImageElement>> {
   });
 }
 
-function getCanvasImage(
+export function getCanvasImage(
   canvas: HTMLCanvasElement,
   quality: number,
 ): Promise<Throwable<Blob>> {
