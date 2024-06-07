@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-types",
-  "version": "0.0.0-alpha.3",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "./dist/index.d.ts",
   "types": "./dist/index.d.ts",

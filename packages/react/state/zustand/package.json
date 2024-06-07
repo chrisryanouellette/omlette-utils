@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react-state-zustand",
-  "version": "0.0.0-alpha.3",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -21,10 +21,11 @@
   "nx": {
     "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]
   },
-  "dependencies": {
-    "zustand": "^4.4.4"
+  "devDependencies": {
+    "zustand": "^4"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "zustand": "^4",
+    "react": "^18"
   }
 }
