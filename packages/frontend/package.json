@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-frontend",
-  "version": "0.0.0-alpha.5",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -24,7 +24,7 @@
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
   "dependencies": {
-    "@ouellettec/utils": "^0.0.0-alpha.4"
+    "@ouellettec/utils": "1.0.0"
   },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils", "@ouellettec/utils-types"]

@@ -71,13 +71,22 @@ function audit(files: PackageJson[], version: PackageVersions): string[] {
     if (!file.dependencies) continue;
     for (const dep of Object.keys(file.dependencies)) {
       if (!dep.startsWith("@ouellettec")) continue;
-      const parsed = file.dependencies[dep].replace(/[^~]/, "");
+      const parsed = file.dependencies[dep].replace(/[\^~]/, "");
       const latest = version[dep];
-      const result = semver.compare(latest, parsed);
-      if (result === 0) continue;
-      outdated.push(
-        `\n\tPackage: "${file.name}"\n\tIssue: "${dep}"\n\tVersion: ${latest}`,
-      );
+      try {
+        const result = semver.compare(latest, parsed);
+        if (result === 0) continue;
+        outdated.push(
+          `\n\tPackage: "${file.name}"\n\tIssue: "${dep}"\n\tVersion: ${latest}`,
+        );
+      } catch (error) {
+        console.error(
+          `Unable to parse package "${dep}" when looking at ${file.name}\n`,
+          `Parsed ${parsed}, Latest ${latest}\n`,
+          error,
+        );
+        process.exit(1);
+      }
     }
   }
   return outdated;

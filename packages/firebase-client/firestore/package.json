@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase-firestore",
-  "version": "0.0.0-alpha.5",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -19,9 +19,14 @@
     "lint:tsc": "yarn tsc --project ./tsconfig.ci.json"
   },
   "dependencies": {
-    "@ouellettec/utils": "^0.0.0-alpha.4",
-    "@ouellettec/utils-firebase": "^0.0.0-alpha.4",
-    "firebase": "^10.6.0"
+    "@ouellettec/utils": "1.0.0",
+    "@ouellettec/utils-firebase": "1.0.0"
+  },
+  "devDependencies": {
+    "firebase": "^10"
+  },
+  "peerDependencies": {
+    "firebase": "^10"
   },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils-firebase"]

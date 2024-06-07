@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase-admin",
-  "version": "0.0.0-alpha.10",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -24,8 +24,13 @@
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
   "dependencies": {
-    "@ouellettec/utils": "^0.0.0-alpha.4",
-    "firebase-admin": "^11.11.1"
+    "@ouellettec/utils": "1.0.0"
+  },
+  "devDependencies": {
+    "firebase-admin": "^12"
+  },
+  "peerDependencies": {
+    "firebase-admin": "^12"
   },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils"]

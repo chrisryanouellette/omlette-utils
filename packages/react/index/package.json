@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react",
-  "version": "0.0.0-alpha.6",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -24,9 +24,9 @@
     "test:coverage:view": "yarn test:coverage --watchAll=false && yarn opener ./coverage/lcov-report/index.html"
   },
   "dependencies": {
-    "@ouellettec/utils-types": "^0.0.0-alpha.3",
-    "@ouellettec/utils-frontend": "^0.0.0-alpha.5",
-    "@ouellettec/utils-react-state-zustand": "^0.0.0-alpha.3"
+    "@ouellettec/utils-types": "1.0.0",
+    "@ouellettec/utils-frontend": "1.0.0",
+    "@ouellettec/utils-react-state-zustand": "1.0.0"
   },
   "nx": {
     "implicitDependencies": [
