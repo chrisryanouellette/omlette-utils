@@ -46,7 +46,7 @@ export function createGlobalStore<State, Action = Partial<State>>(
     replace: boolean | undefined = undefined,
   ): void {
     const update = reducer ? reducer(state.getState(), args) : args;
-    state.setState(update as State, replace);
+    state.setState(update as State, replace as undefined);
   }
 
   return { state, useState, getState, setState, subscribe: state.subscribe };

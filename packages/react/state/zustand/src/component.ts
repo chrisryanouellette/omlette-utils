@@ -48,7 +48,7 @@ export function useComponentStore<State, Action = Partial<State>>(
       replace: boolean | undefined = undefined,
     ) {
       const update = reducer ? reducer(ref.current.getState(), args) : args;
-      ref.current.setState(update as State, replace);
+      ref.current.setState(update as State, replace as undefined);
     },
     [reducer],
   );

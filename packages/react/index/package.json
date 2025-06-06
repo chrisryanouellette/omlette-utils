@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@ouellettec/utils-types": "1.0.0",
     "@ouellettec/utils-frontend": "1.0.0",
-    "@ouellettec/utils-react-state-zustand": "2.0.0"
+    "@ouellettec/utils-react-state-zustand": "2.0.1"
   },
   "nx": {
     "implicitDependencies": [
