@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "scripts": {
     "build": "nx run-many -t build",
@@ -16,7 +16,7 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest": "^29.5.6",
     "@types/node": "^20.9.0",
-    "@types/react": "^18.2.33",
+    "@types/react": "^19.1.6",
     "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "eslint-config-omlette": "^2.0.0",
@@ -29,7 +29,7 @@
     "nx": "17.0.2",
     "opener": "^1.5.2",
     "prettier": "^3.0.3",
-    "react": "^18.2.0",
+    "react": "^19.1.0",
     "rollup": "^4.1.4",
     "ts-jest": "^29.1.1",
     "ts-node": "10.9.1",
