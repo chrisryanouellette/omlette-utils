@@ -1,6 +1,7 @@
 import {
   createContext,
   PropsWithChildren,
+  ReactElement,
   useContext as reactUseContext,
 } from "react";
 
@@ -8,13 +9,13 @@ type ProviderProps<T> = PropsWithChildren<{
   value: T;
 }>;
 
-type ProviderFn<T> = (props: ProviderProps<T>) => JSX.Element;
+type ProviderFn<T> = (props: ProviderProps<T>) => ReactElement;
 type UseContextFn<T> = () => T;
 
 export function contextFactory<T>(): [ProviderFn<T>, UseContextFn<T>] {
   const Context = createContext<T | null>(null);
 
-  function Provider({ children, value }: ProviderProps<T>): JSX.Element {
+  function Provider({ children, value }: ProviderProps<T>): ReactElement {
     return <Context.Provider value={value}>{children}</Context.Provider>;
   }
 

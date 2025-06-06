@@ -32,7 +32,7 @@ type StatusReturn<R, E> = UseComponentStore<ThrowableStatus<R, E>> & {
  *  name: string
  * }
  *
- * function App(): JSX.Element {
+ * function App(): ReactElement {
  *    const store = useStatusStore()
  *    const status = store.useState(); // Use where you need reactivity
  *
@@ -123,7 +123,7 @@ type UseStatusReturn<R, E> = {
  *  name: string
  * }
  *
- * function App(): JSX.Element {
+ * function App(): ReactElement {
  *    const status = useStatus(); // Use where you need reactivity
  *
  *    function handleClick(): Promise<void> {

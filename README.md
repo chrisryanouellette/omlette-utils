@@ -13,7 +13,7 @@ A monorepo filled with useful utilities for Omlettes.
 
 ## Deploying
 
-1. Make sure all code changes fre merged in.
+1. Make sure all code changes are merged in.
 1. Make sure the packages being updated have new version numbers.
    - This includes packages that consume other packages.
 1. Go to the [GitHub Releases page](https://github.com/chrisryanouellette/omlette-utils/releases)

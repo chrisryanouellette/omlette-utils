@@ -92,10 +92,10 @@ type UseTabTrap = {
  */
 
 const useTabTrap = (contentRef: RefObject<HTMLElement>): UseTabTrap => {
-  const firstFocusableElement = useRef<HTMLElement>();
-  const lastFocusableElement = useRef<HTMLElement>();
+  const firstFocusableElement = useRef<HTMLElement>(undefined);
+  const lastFocusableElement = useRef<HTMLElement>(undefined);
   const focusableNodes = useRef<HTMLElement[]>([]);
-  const originalFocus = useRef<HTMLElement>();
+  const originalFocus = useRef<HTMLElement>(undefined);
   const isFocusWithin = useRef<boolean>(false);
   const isTrapping = useRef<boolean>(false);
   const subscriptions = useRef<Set<SubscriptionFn>>(new Set());

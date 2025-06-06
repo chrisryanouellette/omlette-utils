@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react-state-zustand",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -26,6 +26,6 @@
   },
   "peerDependencies": {
     "zustand": "^4",
-    "react": "^18"
+    "react": "^19"
   }
 }
