@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -35,6 +35,6 @@
     ]
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0 || ^19"
   }
 }
