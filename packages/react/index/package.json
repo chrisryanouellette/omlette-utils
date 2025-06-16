@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-react",
-  "version": "2.1.1",
+  "version": "2.1.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
