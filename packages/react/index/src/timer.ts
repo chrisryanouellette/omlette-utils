@@ -140,13 +140,6 @@ function useTimer(ms = 1000): UseTimer {
     };
   }, [ms, start, stop, store]);
 
-  useEffect(function initCleanupTimer() {
-    return function cleanup() {
-      controller.current.abort();
-      timeout.current && clearTimeout(timeout.current);
-    };
-  }, []);
-
   return useMemo(
     () => ({ store, start, restart, stop, set }),
     [stop, restart, start, set, store],
