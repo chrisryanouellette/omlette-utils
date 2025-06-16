@@ -6,7 +6,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from "react";
 
 function getStartTime(): number {
-  if (!window !== undefined) {
+  if (typeof window !== "undefined") {
     return Number(
       document.timeline ? document.timeline.currentTime : performance.now(),
     );
