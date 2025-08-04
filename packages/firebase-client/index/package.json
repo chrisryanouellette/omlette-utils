@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -22,10 +22,10 @@
     "@ouellettec/utils": "1.0.0"
   },
   "devDependencies": {
-    "firebase": "^10"
+    "firebase": "^11"
   },
   "peerDependencies": {
-    "firebase": "^10"
+    "firebase": "^11"
   },
   "nx": {
     "implicitDependencies": ["@ouellettec/utils"]
