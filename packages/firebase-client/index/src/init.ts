@@ -1,26 +1,29 @@
-import {
-  FirebaseApp,
-  getApps,
-  initializeApp,
-  FirebaseOptions,
-} from "firebase/app";
+import { FirebaseApp, initializeApp, FirebaseOptions } from "firebase/app";
 import { Throwable, isSSR } from "@ouellettec/utils";
 
 const subs = new Set<(firebaseClient: FirebaseApp) => void>();
 
-let firebaseClient: FirebaseApp;
+let firebaseClient: FirebaseApp | undefined;
 
 /** Allows the developer to create a new firebase instance */
-export function initializeFirebaseClient(args: FirebaseOptions): FirebaseApp {
-  if (!isSSR()) {
-    if (!getApps().length) {
-      firebaseClient = initializeApp(args);
-      subs.forEach((sub) => sub(firebaseClient));
-      subs.clear();
-      return firebaseClient;
-    }
+export function initializeFirebaseClient(
+  args: FirebaseOptions,
+): Throwable<FirebaseApp> {
+  if (isSSR()) {
+    return {
+      isError: true,
+      error: new Error(
+        "The Firebase client SDK can not be initialized on the server.",
+      ),
+    };
   }
-  return firebaseClient;
+  if (firebaseClient) {
+    return { isError: false, value: firebaseClient };
+  }
+  firebaseClient = initializeApp(args);
+  subs.forEach((sub) => sub(firebaseClient!));
+  subs.clear();
+  return { isError: false, value: firebaseClient };
 }
 
 export function getFirebaseClient(): Throwable<FirebaseApp> {
@@ -40,7 +43,7 @@ export function getFirebaseClient(): Throwable<FirebaseApp> {
 export function subscribeToFirebaseClientInit(
   sub: (firebaseClient: FirebaseApp) => void,
 ): (() => void) | void {
-  if (getApps().length) {
+  if (firebaseClient) {
     sub(firebaseClient);
   } else {
     subs.add(sub);

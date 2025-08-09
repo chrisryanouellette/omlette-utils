@@ -1,6 +1,6 @@
 {
   "name": "@ouellettec/utils-firebase-firestore",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ouellettec/utils": "1.0.0",
-    "@ouellettec/utils-firebase": "2.0.0"
+    "@ouellettec/utils-firebase": "3.0.0"
   },
   "devDependencies": {
     "firebase": "^11"
